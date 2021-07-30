@@ -1,12 +1,26 @@
-from flask import Flask
+from flask import render_template
+from app import create_app
 
-
-app = Flask(__name__)
-
+app = create_app()
 
 @app.route("/")
+@app.route("/home")
 def home():
-    return "Hello world :p"
+
+    context = {
+        "saludo": "Hello word",
+        "despedida": "bye"
+    }
+    
+    auth = 1
+
+    #IF está AUTH mostrar (UserHome) else show (inicio) 
+
+    if auth:
+        return render_template('home.html', **context)
+    else:
+        return render_template('home-no-auth.html')
+
 
 
 if __name__=="__main__":
