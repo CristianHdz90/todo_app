@@ -1,5 +1,5 @@
 from flask import Flask
-from .auth import auth
+from .blueprints.auth import auth
 
 
 def create_app():

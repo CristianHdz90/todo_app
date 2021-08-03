@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Página de inicio no auth</h1>
+    <h1>Todo app</h1>
+    <a href="{{ url_for('auth.login')}}">Sign in</a>
+    <a href="{{ url_for('auth.signup')}}">Sign up</a>
     <p>Add, delete and update your pending tasks</p>
+    <a target="_blank" href="https://linktr.ee/CristianHdz90">Created by CristianHdz90</a>
 {% endblock content %}
