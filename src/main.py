@@ -1,11 +1,18 @@
-from flask import render_template
+from flask import render_template, request
 from app import create_app
+from app.firestore_service import get_users
 
 app = create_app()
 
 @app.route("/")
 @app.route("/home")
 def home():
+
+    user_ip = request.remote_addr
+    
+    #To get users
+    users = get_users()
+    print(users)
 
     context = {
         "saludo": "Hello word",
@@ -14,13 +21,10 @@ def home():
     
     auth = 1
 
-    #IF está AUTH mostrar (UserHome) else show (inicio) 
-
     if auth:
-        return render_template('home.html', **context)
+        return render_template('home.html', **context, user_ip=user_ip)
     else:
         return render_template('home-no-auth.html')
-
 
 
 if __name__=="__main__":
