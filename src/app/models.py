@@ -1,5 +1,5 @@
-from flask_login import UserMixin
 from .firestore_service import get_user
+from flask_login import UserMixin
 
 
 class UserData():

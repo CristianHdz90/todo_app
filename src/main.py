@@ -21,7 +21,7 @@ def home():
     }
     
 
-    print(get_user('camilo').id)
+    # print(get_user('camilo').id)
 
 
     auth = 1

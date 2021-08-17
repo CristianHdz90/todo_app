@@ -1,0 +1,22 @@
+{% macro render_form(form, pin='') %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }}{{pin}}<br />
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <span style="color: red;"> {{error}} </span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }}{{pin}}<br />
+            {{ form.password}}
+            {% for error in form.password.errors %}
+                <span style="color: red;"> {{error}} </span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+{% endmacro%}

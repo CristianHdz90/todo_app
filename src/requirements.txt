@@ -2,3 +2,4 @@ flask
 gunicorn
 google-cloud-firestore
 flask-login
+flask-wtf

@@ -1,8 +1,8 @@
-from flask import Flask
 from .blueprints.auth import auth
+from .config import Config
+from flask import Flask
 from flask_login import LoginManager
 from .models import UserModel
-from .config import Config
 
 
 login_manager = LoginManager()

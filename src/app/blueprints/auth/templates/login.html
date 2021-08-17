@@ -1,16 +1,11 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macros %}
 
 {% block title %}Login{% endblock title %}
 
 {% block content %}
     <h1 style='text-align:center'>Todo App</h1>
-    <form action="#" method="post">
-        <p>Username:</p>
-        <p><input type="text" name="nm"></p>
-        <p>Password:</p>
-        <p><input type="text" name="pw"/></p>
-        <input type="submit" name="submit"/>
-    </form>
+    {{ macros.render_form(form) }}
     <br />
     <p>
         Do you haven't account yet?
