@@ -6,8 +6,16 @@ db = firestore.Client(project='todo-app-321822')
 
 #USERS (C,R,U,D)
 
-def add_user(new_user, data):
-    db.collection('users').document(new_user).set(data)
+def add_user(new_user, password):
+    """ 
+        :param new_user: name of new user
+        :type new_user: string
+        :param password: dictionary with a key named "password" 
+            e.g. {'password':'...'}
+        :type password: dictionary
+    """
+    
+    db.collection('users').document(new_user).set(password)
 
 
 def get_users():

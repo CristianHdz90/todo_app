@@ -3,7 +3,9 @@
     <a class="navbar-brand" href="#">Todo_App</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Logout</a>
+        <a class="nav-link active" 
+            aria-current="page"
+            href="{{ url_for('auth.logout')}}">Logout</a>
         <a class="nav-link" href="https://linktr.ee/CristianHdz90">Creator info</a>
       </div>
     </div>
