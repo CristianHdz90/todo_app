@@ -4,7 +4,7 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-    {{ get_flashed_messages() }}
+    {{ super() }}
     <h1 style='text-align:center'>Todo App</h1>
     {{ macros.render_form(form) }}
     <br />

@@ -4,6 +4,7 @@
 {% block title %}Sign up{% endblock title %}
 
 {% block content %}
+    {{ super() }}
     <h1 style='text-align:center'>Todo App</h1>
     {{ macros.render_form(form, pin='*')}}
     <br />

@@ -3,7 +3,9 @@ from app.firestore_service import add_user
 from app.firestore_service import delete_user
 from app.firestore_service import get_user
 from app.firestore_service import get_users
-from app.forms import MainForm
+from app.forms import DeleteAccountForm
+from app.forms import LoginForm
+from app.forms import SignupForm
 from app.models import UserData
 from app.models import UserModel
 from flask import flash
@@ -14,57 +16,61 @@ from flask import request
 from flask import session
 from flask import url_for
 from flask_login import current_user
+from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
 
 
-@auth.route('/signup', methods=['GET', 'POST'])
+@auth.route('signup', methods=['GET', 'POST'])
 def signup():
 
-    form = MainForm()
+    form = SignupForm()
 
     #if the user already is logged in
     if current_user.is_authenticated:
         return redirect(url_for('home'))
 
-    if request.method == 'POST':
-
-        if form.validate_on_submit():
-
-            #Bring data from form
-            username = form.username.data
-            password = form.password.data
-
-            #Create new user in db
-            password = {'password': password}
-            add_user(username, password)
-
-            return redirect(url_for('home'))
-        
-        return render_template('signup.html', form=form)
-
-    else:
-        return render_template('signup.html', form=form)
-
-
-@auth.route('/login', methods=['GET','POST'])
-def login():
-
-    form = MainForm()
-
-    #if the user already is logged in
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-
-    #If method is 'POST' and went through the validators
     if form.validate_on_submit():
-        
-        #Data from form
+        #Data from the form
         username_form = form.username.data
         password_form = form.password.data
 
-        print(form.username.data)
-        print(form.password.data)
+        #Data from db
+        user_doc = get_user(username_form)
+
+        #if the user doesn't exist
+        if user_doc.to_dict() is None:
+            #Create new user in db
+            add_user(username_form, password_form)
+
+            #Creating the user object
+            user_data = UserData(
+                username = username_form,
+                password = password_form
+            )
+            user = UserModel(user_data)
+
+            #logging in
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            flash('The user already exist, try other username')
+    return render_template('signup.html', form=form)
+
+
+@auth.route('login', methods=['GET','POST'])
+def login():
+
+    form = LoginForm()
+
+    #if the user already is logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    if form.validate_on_submit():
+        #Data from form
+        username_form = form.username.data
+        password_form = form.password.data
 
         #Data from db
         user_doc = get_user(username_form)
@@ -83,18 +89,32 @@ def login():
 
                 #logging in
                 login_user(user)
-
                 return redirect( url_for('home'))
             else:
                 flash('Wrong password')
         else:
             flash('The user does not exist')
-        return render_template('login.html', form = form)
-    else:
-        return render_template('login.html', form = form)
+    return render_template('login.html', form = form)
 
 
-@auth.route('/logout')
+@auth.route('logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+
+@auth.route('delete-account', methods=['POST'])
+@login_required
+def delete_account():
+    delete_account_form = DeleteAccountForm()
+    user_id = current_user.id
+    if delete_account_form.validate():
+        logout_user()
+        delete_user(user_id)
+        return redirect(url_for('auth.signup'))
+    else:
+        errors = delete_account_form.description.errors
+        for error in errors:
+            flash(error)
+        return redirect(url_for('home'))

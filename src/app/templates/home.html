@@ -7,8 +7,50 @@
 
 {% block content %}
     {% include 'navbar.html' %}
-    <h1 class="main-title">Add tasks</h1>
+    {{ super()  }}
+    <h1>¡Hi {{ user_id | capitalize }}!</h1>
+    <div class="main-form">
+        <h2 class="main-title">Add tasks</h2>
+        <form action="" method="post" novalidate>
+            {{ todo_form.hidden_tag() }}
+            {{ todo_form.description }}
+            {{ todo_form.submit }}
+        </form>
+    </div>
     <h2>Your tasks</h2>
-    <p>Su ip es {{user_ip}}</p>
-    <a href="#">Delete account</a>
+    <div>
+        <ul>
+            {% for todo in todos %}
+                {% set todo_status = todo.to_dict()['todo_status']%}
+                <li>{{ todo.to_dict()['description'] }}</li>
+                <div class="todo_status">
+                    <a href="{{
+                        url_for(
+                            'update_todo_status_view', 
+                            todo_id=todo.id,
+                            todo_status=todo_status
+                        )
+                    }}">
+                        {{ todo_status }}
+                    </a>
+                </div>
+                <form action="{{ url_for('update_todos', todo_id=todo.id) }}" 
+                    method="post" novalidate>
+                    {{ update_todo_form.hidden_tag() }}
+                    {{ update_todo_form.description }}
+                    {{ update_todo_form.submit }}
+                </form>
+                <a href="{{ url_for('delete_todos', todo_id=todo.id) }}">Delete</a>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h6>¿Do you want to delete your account?</h6>
+        <p>Type "{{user_id | upper}}" to continue</p>
+        <form action="{{ url_for('auth.delete_account')}}" method="post" novalidate>
+            {{ delete_account_form.hidden_tag() }}
+            {{ delete_account_form.description }}
+            {{ delete_account_form.submit }}
+        </form>
+    </div>
 {% endblock content %} 
