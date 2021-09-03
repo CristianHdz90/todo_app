@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
 
+{% block head %}
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/home_no_auth.css') }}">
+{% endblock head %}
+
 {% block content %}
-    <h1>Todo app</h1>
-    <a href="{{ url_for('auth.login')}}">Sign in</a>
-    <a href="{{ url_for('auth.signup')}}">Sign up</a>
-    <p>Add, delete and update your pending tasks</p>
-    <a target="_blank" href="https://linktr.ee/CristianHdz90">Created by CristianHdz90</a>
+    <div class="container-fluid">
+        <header class="d-flex justify-content-center justify-content-md-between 
+        ms-md-5 me-md-4 mt-5 header row">
+            <h1 class="col-12 col-md-7 mb-5 mb-md-0 text-center 
+            text-md-start main-title">
+                Todo app
+            </h1>
+            <div class="my-5 my-md-0 col-9 col-md-5 col-md-4">
+                <div class="d-flex justify-content-center buttons-wrapper row">
+                    <a class="col-md-5 btn btn-light btn-login" 
+                    href="{{ url_for('auth.login')}}">
+                        Log&nbsp;in
+                    </a>
+                    <a class="col-12 col-md-5 btn btn-primary btn-signup" 
+                    href="{{ url_for('auth.signup')}}">
+                        Sign&nbsp;up
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="description-wrapper">
+            <p class="description">Add, delete and update your pending tasks</p>
+        </div>
+        <footer>
+            <a class="footer-text" target="_blank" 
+            href="https://linktr.ee/CristianHdz90">
+                Created by CristianHdz90
+            </a>
+        </footer>
+    </div>
 {% endblock content %}

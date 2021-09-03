@@ -1,22 +1,58 @@
 {% macro render_form(form, pin='') %}
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <div>
-            {{ form.username.label }}{{pin}}<br />
-            {{ form.username }}
+        <div class="username_field_wrapper">
+            {{
+                form.username.label(
+                    class="username_field_label"
+                )
+            }}
+            <span class="text-danger fs-3">
+                {{pin}}
+            </span>
+            {{  
+                form.username(
+                    class="form-control username_field"
+                )
+            }}
             {% for error in form.username.errors %}
-                <span style="color: red;"> {{error}} </span>
+                <span> {{error}} </span>
             {% endfor %}
         </div>
-        <div>
-            {{ form.password.label }}{{pin}}<br />
-            {{ form.password}}
+        <div class="password_field_wrapper">
+            {{
+                form.password.label(
+                    class="password_field_label"
+                )
+            }}
+            <span class="text-danger fs-3">
+                {{pin}}
+            </span>
+            {{ 
+                form.password(
+                    class="form-control password_field"
+                )
+            }}
             {% for error in form.password.errors %}
-                <span style="color: red;"> {{error}} </span>
+                <span> {{error}} </span>
             {% endfor %}
         </div>
         <div>
-            {{ form.submit }}
+            {{ 
+                form.submit(
+                    class="btn btn-outline-light"
+                )
+            }}
         </div>
     </form>
 {% endmacro%}
+
+{% macro print_flashed_messages() %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endmacro %}

@@ -97,10 +97,5 @@ def server_error(error):
     return render_template('500.html', error=error)
 
 
-@app.route('/hi')
-def index():
-    raise(Exception('500 error'))
-
-
 if __name__=="__main__":
     app.run()

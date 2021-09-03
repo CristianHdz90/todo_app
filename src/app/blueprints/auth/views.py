@@ -19,7 +19,7 @@ from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 
 
-@auth.route('signup', methods=['GET', 'POST'])
+@auth.route('signup/', methods=['GET', 'POST'])
 def signup():
 
     form = SignupForm()
@@ -60,7 +60,7 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-@auth.route('login', methods=['GET','POST'])
+@auth.route('login/', methods=['GET','POST'])
 def login():
 
     form = LoginForm()

@@ -1,3 +1,9 @@
-.navbar-collapse {
-    justify-content: flex-end;
+.navbar {
+  background-color: #6255FF;
+}
+.navbar-brand {
+  font-weight: 600;
+}
+#navbarNavDropdown {
+  justify-content: flex-end;
 }

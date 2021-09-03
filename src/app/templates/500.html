@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
+
+{% block title %}
+    500 Error!
+{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/errors.css') }}">
+{% endblock head %}
+
 {% block content %}
-    <h1>Error 500</h1>
-    {{error}}
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="text-white text-center">
+            <h1>500 Internal server error</h1>
+            <p> 
+                Oops, something went wrong,<br/>
+                try to refresh this page or come back later.
+            </p>
+        </div>
+    </div>
 {% endblock content %}

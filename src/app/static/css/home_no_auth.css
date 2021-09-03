@@ -1,0 +1,88 @@
+body {
+  background-image: url('../svg/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  background-position: right;
+}
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+}
+/*
+*  Header
+*---------------------------------------------------------------------------------------------------
+*/
+.main-title {
+  color: #6255FF;
+}
+.buttons-wrapper {
+  gap: 20px;
+}
+.btn-signup {
+  background-color: #6255FF;
+}
+/*
+*  Description app
+*---------------------------------------------------------------------------------------------------
+*/
+.description-wrapper {
+  justify-content: center;
+  display: flex;
+}
+.description {
+  text-align: center;
+  width: 85%;
+  font-size: 1.2em;
+  margin-bottom: 2em;
+}
+/*
+*  Footer
+*---------------------------------------------------------------------------------------------------
+*/
+footer {
+  margin: 0 0 1em 1em; 
+}
+.footer-text {
+  font-style: italic;
+  font-size: 1.2em;
+  color: white;
+}
+/*
+* Media queries
+*---------------------------------------------------------------------------------------------------
+*/
+@media screen and (min-width: 320px) {
+  .description-wrapper {
+    position: relative;
+    bottom: 2em;
+  }
+  .description {
+    font-size: 1.4em;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  body {
+    background-position: bottom;
+  }
+  .description-wrapper {
+    justify-content: flex-end;
+    right: 3em;
+    bottom: 5em;
+  }
+  .description {
+    width: 12em;
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 992px) {
+  .description-wrapper {
+    right: 4em;
+  }
+  .description {
+    font-size: 2.2em;
+  }
+}

@@ -6,51 +6,129 @@
 {% endblock head %}
 
 {% block content %}
-    {% include 'navbar.html' %}
-    {{ super()  }}
-    <h1>¡Hi {{ user_id | capitalize }}!</h1>
-    <div class="main-form">
-        <h2 class="main-title">Add tasks</h2>
-        <form action="" method="post" novalidate>
-            {{ todo_form.hidden_tag() }}
-            {{ todo_form.description }}
-            {{ todo_form.submit }}
-        </form>
-    </div>
-    <h2>Your tasks</h2>
-    <div>
-        <ul>
-            {% for todo in todos %}
-                {% set todo_status = todo.to_dict()['todo_status']%}
-                <li>{{ todo.to_dict()['description'] }}</li>
-                <div class="todo_status">
-                    <a href="{{
-                        url_for(
-                            'update_todo_status_view', 
-                            todo_id=todo.id,
-                            todo_status=todo_status
-                        )
-                    }}">
-                        {{ todo_status }}
-                    </a>
+    <header id="header">
+        {% include 'navbar.html' %}
+    </header>
+    {{ super()  }} <!-- Flashes -->
+    <div class="main-content container mb-4">
+        <!-- Hero -->
+        <div aria-label="hero" class="row my-5 py-0">
+            <div class="col text-center mb-5">
+                <h1>¡Hi&nbsp;{{ user_id | capitalize }}!</h1>
+            </div>
+            <div class="col-12 ">
+                <!-- Main form -->
+                <div class="main-form p">
+                    <h2 class="main-title">New task</h2>
+                    <form class="d-flex" action="" method="post" novalidate>
+                        {{ todo_form.hidden_tag() }}
+                        {{ 
+                            todo_form.description(
+                                class="col form-control me-2"
+                            ) 
+                        }}
+                        {{ 
+                            todo_form.submit(
+                                class="col-3 btn btn-create btn-custom-color"
+                            ) 
+                        }}
+                    </form>
                 </div>
-                <form action="{{ url_for('update_todos', todo_id=todo.id) }}" 
-                    method="post" novalidate>
-                    {{ update_todo_form.hidden_tag() }}
-                    {{ update_todo_form.description }}
-                    {{ update_todo_form.submit }}
-                </form>
-                <a href="{{ url_for('delete_todos', todo_id=todo.id) }}">Delete</a>
-            {% endfor %}
-        </ul>
+                <!-- /Main form -->
+            </div>
+        </div>
+        <!-- /Hero -->
+        <!-- Task list -->
+        <div aria-label="tasks" class="tasks">
+            <h2 class="subtitle pb-4 fs-2">Your tasks</h2>
+            {% if todos %}
+                <ol>
+                    {% for todo in todos %}
+                        <div class="todo-item my-2">
+                            <div class="todo-details d-flex">
+                                <!-- Status description -->
+                                <li class="pe-3 fs-5 fw-normal text-break" id="todo-description">
+                                    {{ todo.to_dict()['description'] }}
+                                </li>
+                                <!-- /Status description -->                                
+                                <!-- Status badge -->
+                                <div class="status-badge-wrapper">
+                                    {% set todo_status = todo.to_dict()['todo_status']%}
+                                    <a href=
+                                    "{{ url_for(
+                                        'update_todo_status_view', 
+                                        todo_id=todo.id,
+                                        todo_status=todo_status
+                                    )}}"
+                                    id="status-badge">
+                                        {% if todo_status == True %}
+                                            <p class="badge rounded-pill bg-success text-white m-auto">
+                                                Done
+                                            </p>
+                                        {% else  %}
+                                            <p class="badge rounded-pill bg-secondary text-white m-auto">
+                                                Todo
+                                            </p>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <!-- /Status badge -->
+                            </div>
+                            <div class="todo-options row pe-2">
+                                <!-- Update form -->
+                                <form action="{{ url_for('update_todos', todo_id=todo.id) }}" 
+                                class="update-form p-0 mt-2 mb-1" method="post" novalidate>
+                                    {{ update_todo_form.hidden_tag() }}
+                                    {{ 
+                                        update_todo_form.description(
+                                            class="form-control me-2"
+                                        ) 
+                                    }}
+                                    {{ 
+                                        update_todo_form.submit(
+                                            class="btn-update btn btn-custom-color w-100"
+                                        ) 
+                                    }}
+                                </form>
+                                <!-- /Update form -->
+                                <!-- Delete button -->
+                                <a href="{{ url_for('delete_todos', todo_id=todo.id) }}"
+                                class="btn-delete btn btn-danger w-auto">
+                                    Delete
+                                </a>
+                                <!-- Delete button -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <p class="text-secondary">There is nothing here yet, ¡Add a new task!</p>
+            {% endif %}
+        </div>
+        <!-- /Task list -->
     </div>
-    <div>
-        <h6>¿Do you want to delete your account?</h6>
-        <p>Type "{{user_id | upper}}" to continue</p>
-        <form action="{{ url_for('auth.delete_account')}}" method="post" novalidate>
-            {{ delete_account_form.hidden_tag() }}
-            {{ delete_account_form.description }}
-            {{ delete_account_form.submit }}
-        </form>
-    </div>
+    <footer class="px-5 py-md-2 pb-3 pt-1 d-md-flex align-items-center justify-content-center" 
+    id="footer">
+        <div class="text-center me-4">
+            <p class="text-white my-2">
+                ¿Do you want to delete your account? Type "{{user_id | upper}}" to continue.
+            </p>
+        </div>
+        <div class="my-1">
+            <form class="d-flex" action="{{ url_for('auth.delete_account')}}" method="post" novalidate>
+                {{ delete_account_form.hidden_tag() }}
+                {{ 
+                    delete_account_form.description(
+                        class="form-control me-2",
+                        autocomplete="off"
+                    ) 
+                }}
+                {{ 
+                    delete_account_form.submit(
+                        class="btn btn-outline-light"
+                    ) 
+                }}
+            </form>
+        </div>
+    </footer>
 {% endblock content %} 

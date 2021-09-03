@@ -1,0 +1,51 @@
+body {
+  background-color: #6255FF;
+  color: white;
+}
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh ;
+}
+.main-title {
+  text-align:center;
+  margin: 0 0 2em 0;
+}
+/*
+* Form
+*---------------------------------------------------------------------------------------------------
+*/
+.username_field_wrapper {
+  margin-bottom: 2em;
+}
+.password_field_wrapper {
+  margin-bottom: 3.5em;
+}
+.password_field_label,
+.username_field_label {
+  font-size: 1.4em;
+  font-style: italic;
+  font-weight: 300;
+}
+.btn {
+  width: 100%;
+  font-weight: 300;
+  font-size: 1.4em;
+  padding: 0;
+}
+.question {
+  text-align: center;
+}
+.question-link {
+  color: #56C2FF;
+}
+/*
+* Media queries
+*---------------------------------------------------------------------------------------------------
+*/
+@media screen and (max-width: 575px) {
+  .form-wrapper {
+    width: 75vw !important;
+  }
+}

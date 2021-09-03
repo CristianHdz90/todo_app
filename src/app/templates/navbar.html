@@ -1,21 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Todo_App</a>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" 
-          aria-current="page"
-          href="{{ url_for('auth.logout')}}"
-          >
-          Logout
-        </a>
-        <a class="nav-link" 
-          target="_blank" 
-          href="https://linktr.ee/CristianHdz90"
-          >
-          Creator info
-        </a>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand text-light" href="#">Todo App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-light navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="https://github.com/CristianHdz90" 
+          class="nav-link active text-light"
+          target="_blank">
+            Git Hub
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="https://linktr.ee/CristianHdz90" 
+          class="nav-link active text-light"
+          target="_blank">
+            Creator info
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('auth.logout')}}" 
+          class="nav-link text-light">
+            Log out
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
