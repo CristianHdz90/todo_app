@@ -1,26 +1,27 @@
-{% extends 'templates_auth/base.html' %}
-{% import 'macros.html' as macros %}
+{% extends 'auth_templates/base.html' %}
 
-{% block title %}Log in{% endblock title %}
+{% block title %}Sign up{% endblock title %}
 
 {% block head %}
     <link rel="stylesheet" 
     href="{{ url_for('auth.static', filename='css/login_and_signup.css')}}">
 {% endblock head %}
-
+    
 {% block content %}
     <div class="container-fluid">
         <div class="w-50 px-lg-5 row form-wrapper">
             <div class="p-0 col-12 px-md-5">
                 <h1 class="main-title">Todo App</h1>
-                {{ macros.render_form(form) }}<br/>
+                {{ auth_macros.render_form(form, pin='*')}}
+                <br/>
                 <p class="question">
-                    Do you haven't account yet?
-                    <a class="question-link" href="{{ url_for('auth.signup') }}">
-                        Sign&nbsp;up
+                    Already have an account?
+                    <a class="question-link" href="{{ url_for('auth.login') }}">
+                        log&nbsp;in
                     </a>
                 </p>
             </div>
         </div>
     </div>
 {% endblock content %}
+

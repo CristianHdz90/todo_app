@@ -1,6 +1,8 @@
+<!-- Login and signup form -->
 {% macro render_form(form, pin='') %}
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
+        <!-- Username field -->
         <div class="username_field_wrapper">
             {{
                 form.username.label(
@@ -19,6 +21,8 @@
                 <span> {{error}} </span>
             {% endfor %}
         </div>
+        <!-- /Username field -->
+        <!-- Password field -->
         <div class="password_field_wrapper">
             {{
                 form.password.label(
@@ -37,6 +41,8 @@
                 <span> {{error}} </span>
             {% endfor %}
         </div>
+        <!-- /Password field -->
+        <!-- Submit button -->
         <div>
             {{ 
                 form.submit(
@@ -44,15 +50,6 @@
                 )
             }}
         </div>
+        <!-- /Submit button -->
     </form>
 {% endmacro%}
-
-{% macro print_flashed_messages() %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-{% endmacro %}

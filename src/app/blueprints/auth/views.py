@@ -56,8 +56,8 @@ def signup():
             login_user(user)
             return redirect(url_for('home'))
         else:
-            flash('The user already exist, try other username')
-    return render_template('signup.html', form=form)
+            flash('The user already exist, try with another username')
+    return render_template('auth_templates/signup.html', form=form)
 
 
 @auth.route('login/', methods=['GET','POST'])
@@ -98,7 +98,7 @@ def login():
                 flash('Wrong password')
         else:
             flash('The user does not exist')
-    return render_template('login.html', form = form)
+    return render_template('auth_templates/login.html', form = form)
 
 
 @auth.route('logout')
