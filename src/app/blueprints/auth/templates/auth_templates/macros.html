@@ -3,7 +3,7 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <!-- Username field -->
-        <div class="username_field_wrapper">
+        <div class="mb-4 username_field_wrapper">
             {{
                 form.username.label(
                     class="username_field_label"
@@ -23,7 +23,7 @@
         </div>
         <!-- /Username field -->
         <!-- Password field -->
-        <div class="password_field_wrapper">
+        <div class="mb-2 password_field_wrapper">
             {{
                 form.password.label(
                     class="password_field_label"
@@ -42,6 +42,12 @@
             {% endfor %}
         </div>
         <!-- /Password field -->
+        <!-- Show_password checkbox -->
+        <div class="mb-5 show_password_field_wrapper">
+            {{ form.show_password(class="form-check-input") }}
+            {{ form.show_password.label }}
+        </div>
+        <!-- /Show_password checkbox -->
         <!-- Submit button -->
         <div>
             {{ 

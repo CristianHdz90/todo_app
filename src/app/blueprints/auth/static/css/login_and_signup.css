@@ -16,12 +16,6 @@ body {
 * Form
 *---------------------------------------------------------------------------------------------------
 */
-.username_field_wrapper {
-  margin-bottom: 2em;
-}
-.password_field_wrapper {
-  margin-bottom: 3.5em;
-}
 .password_field_label,
 .username_field_label {
   font-size: 1.4em;

@@ -1,5 +1,6 @@
 from flask import session
 from flask_wtf import FlaskForm
+from wtforms.fields import BooleanField
 from wtforms.fields import PasswordField
 from wtforms.fields import StringField
 from wtforms.fields import SubmitField
@@ -10,18 +11,30 @@ from wtforms.validators import ValidationError
 
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=10)])
+    password = PasswordField(
+        'Password',
+        validators=[DataRequired(),
+        Length(min=10)],
+        id='password'
+    )
+    show_password = BooleanField('Show', id='show_password')
     submit = SubmitField('Sign up')
 
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField(
+        'Password',
+        validators=[DataRequired()],
+        id='password'
+    )
+    show_password = BooleanField('Show', id='show_password')
     submit = SubmitField('Log in')
 
 
 class TodoForm(FlaskForm):
-    description = StringField('Description', 
+    description = StringField(
+        'Description', 
         validators=[DataRequired()],
         render_kw={"placeholder":"type something..."}
     )
@@ -29,7 +42,8 @@ class TodoForm(FlaskForm):
 
 
 class UpdateTodoForm(FlaskForm):
-    description = StringField('Description',
+    description = StringField(
+        'Description',
         validators=[DataRequired()],
         render_kw={"placeholder":"something else"}
     )

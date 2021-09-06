@@ -1,10 +1,19 @@
 <!-- Flashed messages -->
 {% macro print_flashed_messages() %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="m-2 py-1 alert alert-danger alert-dismissible text-center">
+                        <span class=" fs-5">
+                            {{ message }}
+                        </span>
+                        <button type="button" 
+                        class="btn-close py-0 h-100" 
+                        data-bs-dismiss="alert" 
+                        aria-label="Close">
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 {% endmacro %}

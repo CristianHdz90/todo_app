@@ -8,8 +8,8 @@
 {% block content %}
     <header id="header">
         {% include 'navbar.html' %}
+        {{ super() }} <!-- Flashes -->
     </header>
-    {{ super()  }} <!-- Flashes -->
     <div class="main-content container mb-4">
         <!-- Hero -->
         <div aria-label="hero" class="row my-5 py-0">

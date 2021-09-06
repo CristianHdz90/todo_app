@@ -2,3 +2,4 @@ config/*
 start.sh
 __pycache__/
 *.pyc
+tests/
