@@ -39,17 +39,22 @@ Make sure that the secret key is secure (and don't use the same of above)
 ---
 ## Gallery
 
-#### Home without authentication
-![home_no_auth]("home no auth")
+1.  #### Home without authentication
+    \
+    ![home_no_auth](https://raw.githubusercontent.com/CristianHdz90/todo_app/main/src/app/static/images/gallery/home_no_auth.png "home no auth")
 
-#### Login page
-![login]("login page")
 
-#### Signup page
-![signup]("signup page")
+2. #### Log in page
+    \
+    ![login](https://raw.githubusercontent.com/CristianHdz90/todo_app/main/src/app/static/images/gallery/login.png "login page")
 
-#### Home
-![home]("main home")
+3. #### Sign up page
+    \
+    ![signup](https://raw.githubusercontent.com/CristianHdz90/todo_app/main/src/app/static/images/gallery/signup.png "signup page")
+
+4. #### Home
+    \
+    ![home](https://raw.githubusercontent.com/CristianHdz90/todo_app/main/src/app/static/images/gallery/home.png "main home")
 
 ---
 ### Created by:

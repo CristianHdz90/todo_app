@@ -1,5 +1,11 @@
+#db auth config
 config/*
+!config/.gitkeep
+
+# Development config
 start.sh
-__pycache__/
-*.pyc
 tests/
+
+# cache
+__pycache__/*
+*.pyc
