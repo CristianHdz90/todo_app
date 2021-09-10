@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+
+  todo_app:
+    build: 
+      context: .
+      dockerfile: development.Dockerfile
+    volumes:
+      - .:/todo_app
+    ports:
+      - 5000:5000
+
+    

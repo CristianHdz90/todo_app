@@ -1,0 +1,12 @@
+# Git & GitHub
+.git
+.gitignore
+README.md
+
+# Development
+.dockerignore
+development.Dockerfile
+production.Dockerfile
+docker-compose.yml
+heroku.yml
+tests
