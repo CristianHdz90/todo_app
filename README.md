@@ -26,42 +26,44 @@ And the best, ¡You might use it from any device!
 ---
 ## How to use it in production and development
 
-Note: Before starting with these steps you have to run the docker-compose.yml in your machine if you are in a development environment or the heroku.yml on the Heroku platform if you want to start the app in production.
+Note: Before starting with these steps make sure to run the docker-compose.yml in your machine if you are in a development environment.
 
 Requirements:
-* you must have a Heroku account, this will be used to deploy our app. (This because I've done this application to be deployed on this platform)
+* you must have a Heroku account, this will be used to deploy our app. (This because this application was done to be deployed on this platform)
 * Also you must have an account of Google Cloud Platform, this will be required to use the Firestore service (our database).
 
 Steps:
 
-*This first step is only for **production environment***
+1. Once you have cloned this repository you will need one file named `KeyFile.json`, this file must contain the credentials that the app needs to authenticate with the Firestore service. Then, you just need to put it inside the **/config** directory.
 
-1. First of all you have to set the following environment variable that flask needs to work. 
+    * (only for **production environment**) --> To can add the KeyFile.json to Git, you have to delete this line in the .gitignore file:
 
-    *Bash example*:
-    ```bash
-    export SECRET_KEY_FLASK="uALZuZSksQLeQ4@&_%EwHakWke_Fm-=^3=cqxUC@U+VQc!W7tEp_6Pm?6@+wZJ-UR"
-    ```
-    Make sure that the secret key is secure (and don't use the same of above)
+        `
+        config/*
+        `
 
-2. Now you will need one file named `KeyFile.json`, this file must contain the credentials for the app to connect it to the Firestore service. Then, you just need to put it in the **/config** directory.
-
+        **IMPORTANT**: I recommend you add the credentials file in another branch different to the main branch, only for security, and then to push it to Heroku.
+    
     How to get the credentials?
 
     To get these credentials you will need to create a key file linked to one service account, you can read about it [here](https://cloud.google.com/docs/authentication/getting-started).
 
-3. Once the above is done, you just need to set the next environment variable that contains the route to the credentials file to authenticate your app with Firestore.
+2. (This step is only for **production environment**) Once you are in Heroku CLI you have to set the following environment variable that flask needs to work. 
 
-    *Bash example*:
-    ```bash
-    export GOOGLE_APPLICATION_CREDENTIALS="/todo_app/config/KeyFile.json"
-    ```
-
-    Note: If you're in the development environment you have to call the application with the 5000 port, e.g.
+    Type this command:
 
     ```bash
-    flask run -h 0.0.0.0 -p 5000 
+    heroku config:set SECRET_KEY_FLASK="6enuJsmM2tatuhUN7vjpKmYfcvrsrCvDvGGxSS4eAqV4dSq9ZxVGUudSQNF27jNk"
     ```
+
+    Make sure that the secret key is secure (and don't use the same of above) 
+
+\
+**Note**: When you want to run the app in the development environment just type:
+
+```bash
+flask run -h 0.0.0.0 -p 5000 
+```
 
 ---
 ## Gallery
