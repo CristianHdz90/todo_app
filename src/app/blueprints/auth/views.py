@@ -31,6 +31,7 @@ def signup():
     if form.validate_on_submit():
         #Data from the form
         username_form = form.username.data
+        username_form = username_form.lower() #Transform to lowercase
         password_form = form.password.data
 
         #Data from db
@@ -72,6 +73,7 @@ def login():
     if form.validate_on_submit():
         #Data from form
         username_form = form.username.data
+        username_form = username_form.lower() #Transform to lowercase
         password_form = form.password.data
 
         #Data from db
