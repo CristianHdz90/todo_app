@@ -7,5 +7,5 @@ start.sh
 tests/
 
 # cache
-__pycache__/*
+**__pycache__/
 *.pyc
